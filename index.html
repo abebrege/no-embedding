@@ -2,15 +2,247 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icons.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>No Embedding</title>
+    <title>No Embedding — Quantum Programming Languages</title>
+    <meta name="description" content="A curated list of programming languages, libraries, literature, and research groups for quantum control and high-level quantum programming." />
+    <link rel="icon" type="image/svg+xml" href="icons.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="theme.css" />
+    <script src="theme-toggle.js"></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="page">
+      <header class="site-header">
+        <a class="wordmark" href="#top">No Embedding</a>
+        <nav class="site-nav">
+          <a href="#languages-libraries--irs">Languages</a>
+          <a href="#literature">Literature</a>
+          <a href="#research-groups--institutions">Groups</a>
+          <a href="content/reports/control-flow-report.md">Reports</a>
+          <a href="https://github.com/abebrege/no-embedding-site" target="_blank" rel="noopener noreferrer">Contribute</a>
+        </nav>
+        <button type="button" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+      </header>
+
+      <div class="hero">
+        <p>A directory of research on high-level quantum programming languages.</p>
+        <p>Most material is related to quantum control, with some on uncomputation and debugging.</p>
+      </div>
+
+      <main class="content" id="top">
+        <h2 id="contents">Contents</h2>
+        <ul>
+          <li><a href="#languages-libraries--irs">Languages, libraries &amp; IRs</a>
+            <ul>
+              <li><a href="#functional--higher-order">Functional &amp; higher-order</a></li>
+              <li><a href="#procedural--imperative">Procedural &amp; imperative</a></li>
+              <li><a href="#embedded--high-level">Embedded &amp; high-level</a></li>
+              <li><a href="#circuit-libraries">Circuit libraries</a></li>
+              <li><a href="#intermediate-representations">Intermediate representations</a></li>
+              <li><a href="#quantum-optimal--hardware-control">Quantum optimal &amp; hardware control</a></li>
+            </ul>
+          </li>
+          <li><a href="#literature">Literature</a>
+            <ul>
+              <li><a href="#surveys--reviews">Surveys &amp; reviews</a></li>
+              <li><a href="#foundations--models-of-computation">Foundations &amp; models of computation</a></li>
+              <li><a href="#quantum-control-flow">Quantum control flow</a></li>d
+              <li><a href="#semantics--type-systems">Semantics &amp; type systems</a></li>
+              <li><a href="#languages-frameworks--compilers">Languages, frameworks &amp; compilers</a></li>
+              <li><a href="#uncomputation">Uncomputation</a></li>
+              <li><a href="#verification--debugging">Verification &amp; debugging</a></li>
+            </ul>
+          </li>
+          <li><a href="#research-groups--institutions">Research groups &amp; institutions</a></li>
+          <li><a href="#reports">Reports</a></li>
+          <li><a href="#reference">Reference</a></li>
+        </ul>
+
+        <h2 id="languages-libraries--irs">Languages, libraries &amp; IRs</h2>
+        <h3 id="functional--higher-order">Functional &amp; higher-order</h3>
+        <ul>
+          <li><a href="https://github.com/mikhailmints/qunity">Qunity</a> (OCaml) - A unified functional language that expresses classical and quantum computation in one consistent syntax, with reversible semantics that treat quantum control flow as a first-class construct.</li>
+          <li><a href="https://github.com/thephoeron/quipper-language">Quipper</a> (Haskell) - A scalable, higher-order functional quantum language embedded in Haskell, designed to describe large quantum circuits under the classical-control (QRAM) model.</li>
+          <li><a href="https://github.com/inQWIRE/QWIRE">QWire</a> (Coq) - A minimal, formally verified core language for quantum circuits ("choir") that interfaces with an arbitrary classical host language following the QRAM model.</li>
+          <li><strong>QML</strong> (Functional) - A functional quantum language whose design is guided by its categorical semantics, integrating reversible and irreversible computation via strict linear logic.</li>
+          <li><strong>qGCL</strong> - A quantum extension of Dijkstra's Guarded Command Language introducing quantum alternation and quantum choice to support the superposition of programs.</li>
+        </ul>
+
+        <h3 id="procedural--imperative">Procedural &amp; imperative</h3>
+        <ul>
+          <li><a href="https://github.com/silq-lang/silq">Silq</a> (D) - A high-level quantum language that automatically and safely uncomputes temporary values, letting programs implicitly drop intermediate results as in classical code for shorter, more intuitive quantum programs.</li>
+          <li><a href="https://github.com/psg-mit/twist-popl22">Twist</a> (OCaml) - A quantum language whose type system tracks purity and entanglement, letting programmers state and statically verify assumptions about which qubits are entangled.</li>
+          <li><a href="https://github.com/psg-mit/tower-oopsla22">Tower</a> (OCaml) - A language for building pointer-based data structures that live in quantum superposition, letting quantum algorithms use familiar structures such as linked lists and trees.</li>
+          <li><a href="https://github.com/epiqc/ScaffCC">Scaffold</a> (C++) - A C-like quantum programming language compiled by the ScaffCC toolchain, aimed at expressing and analyzing large-scale quantum programs.</li>
+          <li><a href="https://github.com/microsoft/qsharp-compiler">Q#</a> (C#) - Microsoft's high-level, hardware-agnostic domain-specific language for scalable quantum programming.</li>
+          <li><strong>QCL</strong> - One of the first quantum programming languages: a procedural, C-like language bringing classical concepts (memory management, flow control) to quantum computing.</li>
+          <li><strong>isQ</strong> - An imperative quantum programming language and integrated software stack that compiles to QIR, OpenQASM, and other intermediate representations.</li>
+          <li><strong>RQC++</strong> - A notation for recursively defined quantum circuits and quantum recursive programs.</li>
+        </ul>
+
+        <h3 id="embedded--high-level">Embedded &amp; high-level</h3>
+        <ul>
+          <li><a href="https://github.com/eclipse-qrisp/Qrisp">Qrisp</a> (Python) - A high-level Python framework that raises quantum programming above the circuit level with managed QuantumVariables and automatic qubit allocation.</li>
+          <li><a href="https://github.com/gt-tinker/qwerty">Qwerty</a> (Python) - A high-level, basis-oriented quantum language embedded in Python that abstracts away individual qubits and gates in favor of reasoning about bases and functions.</li>
+          <li><a href="https://www.quantinuum.com/blog/guppy-programming-the-next-generation-of-quantum-computers">Guppy</a> (Python) - Quantinuum's Python-embedded DSL for high-level hybrid quantum-classical programs with rich, Pythonic control flow.</li>
+          <li><a href="https://github.com/Abhinandan-Pal/qiwi">Qiwi</a> (Python) - A beginner-friendly quantum language offering high-level abstractions with dead-qubit elimination and dynamically sized data types.</li>
+          <li><strong>Qurts</strong> (Rust) - A high-level extension of Rust that leverages Rust's ownership and type systems to provide automatic uncomputation and quantum control.</li>
+        </ul>
+
+        <h3 id="circuit-libraries">Circuit libraries</h3>
+        <ul>
+          <li><a href="https://github.com/Qiskit/qiskit">Qiskit</a> (Python) - IBM's open-source SDK for composing, simulating, and running quantum circuits.</li>
+          <li><a href="https://github.com/quantumlib/Cirq">Cirq</a> (Python) - Google's Python framework for writing, optimizing, and running circuits on NISQ devices.</li>
+          <li><a href="https://github.com/Quantinuum/tket">t|ket〉</a> (Python) - Quantinuum's retargetable optimizing compiler and <code>pytket</code> toolkit for NISQ devices.</li>
+          <li><a href="https://github.com/ProjectQ-Framework/ProjectQ">ProjectQ</a> (Python) - An open-source framework that compiles high-level quantum programs to a range of simulator and hardware backends.</li>
+          <li><a href="https://github.com/rigetti/pyquil">pyQuil</a> (Python) - Rigetti's Python library for writing and running programs in the Quil instruction language.</li>
+        </ul>
+
+        <h3 id="intermediate-representations">Intermediate representations</h3>
+        <ul>
+          <li><a href="https://github.com/openqasm/openqasm">OpenQASM</a> (Python) - An imperative quantum assembly language and intermediate representation for describing quantum circuits.</li>
+          <li><a href="https://github.com/qir-alliance/qir-spec">QIR</a> (LLVM) - The Quantum Intermediate Representation, an LLVM-based specification for representing quantum programs across toolchains.</li>
+          <li><a href="https://github.com/inQWIRE/SQIR/">SQIR</a> (Coq) - A small quantum intermediate representation embedded in Coq for formally verified compilation and program proofs.</li>
+          <li><a href="https://github.com/psg-mit/qcm-artifact">Quantum Control Machine</a> (OCaml) - An instruction set architecture whose conditional jump is restricted to the conditions under which control flow can be correctly realized in superposition.</li>
+        </ul>
+
+        <h3 id="quantum-optimal--hardware-control">Quantum optimal &amp; hardware control</h3>
+        <p>The qosf <a href="https://github.com/qosf/awesome-quantum-software">Awesome Quantum Software</a> list uses "quantum control" in its other sense — optimizing and calibrating the physical pulses that steer qubits. Those tools are included here for completeness.</p>
+        <h4>Python</h4>
+        <ul>
+          <li><a href="https://github.com/q-optimize/c3">C3</a> - Open-loop, closed-loop and automated Control, Calibration and Characterization of quantum devices.</li>
+          <li><a href="https://github.com/qucontrol/krotov">Krotov</a> - Python implementation of Krotov's method for quantum optimal control.</li>
+          <li><a href="https://github.com/qiboteam/qibo">Qibo</a> - Platform-agnostic quantum hardware control module with drivers for multiple instruments.</li>
+          <li><a href="https://github.com/baidu/Quanlse">Quanlse</a> - Quantum control solutions via a cloud SDK, developed by <a href="https://research.baidu.com/Research_Areas/index-view?id=75">Baidu Quantum</a>.</li>
+        </ul>
+
+        <h2 id="literature">Literature</h2>
+        <h3 id="surveys--reviews">Surveys &amp; reviews</h3>
+        <ul>
+          <li><a href="https://link.springer.com/chapter/10.1007/978-3-540-24754-8_1">A Brief Survey of Quantum Programming Languages</a> - Selinger (2004).</li>
+          <li><a href="https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/abs/quantum-programming-languages-survey-and-bibliography/80E4ECC8AE770B625A48F2EE28358BA6">Quantum programming languages: survey and bibliography</a> - Gay (2006).</li>
+          <li><a href="https://arxiv.org/abs/0804.1118">A Survey of Quantum Programming Languages: History, Methods, and Tools</a> - Sofge (2007).</li>
+          <li><a href="https://www.nature.com/articles/s42254-020-00245-7">Quantum programming languages</a> - Heim et al., <em>Nature Reviews Physics</em> (2020).</li>
+          <li><a href="https://link.springer.com/10.1007/978-3-031-90200-0_9">Quantum Compilation Process: A Survey</a> - Cardama et al. (2025).</li>
+          <li><a href="https://link.springer.com/10.1007/978-3-032-10775-6_3">Quantum Programming: Languages and Frameworks</a> - Nalwade and Upoma (2026).</li>
+        </ul>
+
+        <h3 id="foundations--models-of-computation">Foundations &amp; models of computation</h3>
+        <ul>
+          <li><a href="https://ieeexplore.ieee.org/document/5391327">Logical Reversibility of Computation</a> - Bennett (1973).</li>
+          <li><a href="https://royalsocietypublishing.org/rspa/article/400/1818/97/15743/Quantum-theory-the-Church-Turing-principle-and-the">Quantum theory, the Church-Turing principle and the universal quantum computer</a> - Deutsch (1985).</li>
+          <li><a href="https://doi.org/10.1098/rspa.1989.0099">Quantum computational networks</a> - Deutsch (1989).</li>
+          <li><a href="https://doi.org/10.1098/rspa.1992.0167">Rapid solution of problems by quantum computation</a> - Deutsch and Jozsa (1992).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/167088.167097">Quantum Complexity Theory</a> - Bernstein and Vazirani (1993).</li>
+          <li><a href="http://arxiv.org/abs/quant-ph/9508027">Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer</a> - Shor (1996).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/237814.237866">A fast quantum mechanical algorithm for database search</a> - Grover (1996).</li>
+          <li><a href="http://arxiv.org/abs/2211.02559">Conventions for Quantum Pseudocode</a> - Knill (1996).</li>
+          <li><a href="http://arxiv.org/abs/quant-ph/9806054">The Halting Problem for Quantum Computers</a> - Linden (1998).</li>
+          <li><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.79.052322">Construction of a universal quantum computer</a> - Lagana et al. (2009).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/1366230.1366239">Principles of a reversible programming language</a> - Yokoyama et al. (2008).</li>
+          <li><a href="https://link.springer.com/chapter/10.1007/978-3-642-29517-1_3">A Reversible Processor Architecture and Its Reversible Logic Design</a> - Thomsen et al. (2012).</li>
+          <li><a href="https://arxiv.org/abs/2003.03514">Quantum Random Access Stored-Program Machines</a> - Wang and Ying (2023).</li>
+        </ul>
+
+        <h3 id="quantum-control-flow">Quantum control flow</h3>
+        <ul>
+          <li><a href="https://arxiv.org/abs/quant-ph/0605218">Quantum Loop Programs</a> - Ying and Feng (2007).</li>
+          <li><a href="https://arxiv.org/abs/1209.4379">Defining Quantum Control Flow</a> - Ying et al. (2012).</li>
+          <li><a href="https://arxiv.org/pdf/1402.5172">Alternation in Quantum Programming: From Superposition of Data to Superposition of Programs</a> - Ying et al. (2014).</li>
+          <li><a href="https://arxiv.org/abs/1405.4443">Quantum Recursion and Second Quantisation</a> - Ying (2014).</li>
+          <li><a href="https://arxiv.org/abs/1511.01567">Quantum Alternation: Prospects and Problems</a> - Bădescu and Panangaden (2015).</li>
+          <li><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.022340">Quantum conditional operations</a> - Bislo et al. (2016).</li>
+          <li><a href="https://arxiv.org/abs/1804.00952">From Symmetric Pattern-Matching to Quantum Control</a> - Sabry et al. (2018).</li>
+          <li><a href="https://arxiv.org/abs/2009.08832">Weakly measured while loops: peeking at quantum states</a> - Andrés-Martínez et al. (2022).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3656397">The T-Complexity Costs of Error Correction for Control Flow in Quantum Computation</a> - Yuan and Carbin (2024).</li>
+          <li><a href="https://arxiv.org/abs/2304.15000">Quantum Control Machine</a> - Yuan et al. (2024).</li>
+          <li><a href="http://arxiv.org/abs/2404.05934">Verification of Recursively Defined Quantum Circuits</a> - Ying and Zhang (2024).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3632901">A Case for Synthesis of Recursive Quantum Unitary Programs</a> - Deng et al. (2024).</li>
+          <li><a href="https://cqi.inf.usi.ch/publications/Hierarchical_PlanQC2026.pdf">Towards a Hierarchical Quantum Circuit Language</a> - Schober and Wesley (2025).</li>
+          <li><a href="https://arxiv.org/abs/2510.20452">Resource-Aware Quantum Programming with General Recursion and Quantum Control</a> - Chardonnet et al. (2025).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3763056">Compositional Quantum Control Flow with Efficient Compilation in Qunity</a> - Mints et al. (2025).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3729283">Quantum Register Machine: Efficient Implementation of Quantum Recursive Programs</a> - Zhang and Ying (2025).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3765903">Laws of Quantum Programming</a> - Ying et al. (2025).</li>
+          <li><a href="https://arxiv.org/abs/2507.10466">Quantum Control and General Recursion beyond the Unitary Case</a> - Barsse et al. (2026).</li>
+          <li><a href="https://arxiv.org/abs/2507.11676">Quantum Circuits Are Just a Phase</a> - Heunen et al. (2026).</li>
+        </ul>
+
+        <h3 id="semantics--type-systems">Semantics &amp; type systems</h3>
+        <ul>
+          <li><a href="http://arxiv.org/abs/quant-ph/9612052">Extending the Lambda Calculus to Express Randomized and Quantumized Algorithms</a> - Maymin (1997).</li>
+          <li><a href="http://arxiv.org/abs/quant-ph/0307150">A Lambda Calculus for Quantum Computation</a> - van Tonder (2003).</li>
+          <li><a href="https://www.cambridge.org/core/product/identifier/S0960129504004256/type/journal_article">Towards a quantum programming language</a> - Selinger (2004).</li>
+          <li><a href="http://arxiv.org/abs/quant-ph/0409065">A functional quantum programming language</a> - Altenkirch and Grattage (2005).</li>
+          <li><a href="http://arxiv.org/abs/quant-ph/0211100">Classical Concepts in Quantum Programming</a> - Ömer (2005).</li>
+          <li><a href="https://ieeexplore.ieee.org/document/8785834">Realizability in the Unitary Sphere</a> - Díaz-Caro et al. (2019).</li>
+          <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2352220822000438">Semantics of quantum programming languages: Classical control, quantum control</a> - Valiron (2022).</li>
+          <li><strong>Foundational Abstractions for Quantum Programming</strong> - Yuan, PhD Thesis, MIT (2025).</li>
+        </ul>
+
+        <h3 id="languages-frameworks--compilers">Languages, frameworks &amp; compilers</h3>
+        <ul>
+          <li><a href="https://apps.dtic.mil/sti/tr/pdf/ADA571279.pdf">Scaffold: Quantum Programming Language</a> - Abhari et al. (2012).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/2491956.2462177">Quipper: a scalable quantum programming language</a> - Green et al. (2013).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/2597917.2597939">ScaffCC: a framework for compilation and analysis of quantum computing programs</a> - JavadiAbhari et al. (2014).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/2699415">Programming the quantum future</a> - Valiron et al. (2015).</li>
+          <li><strong>Practical Modern Quantum Programming</strong> - McNally (2015). Introduces Cavy and region-inference-based ancilla management.</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3009837.3009894">QWIRE: a core language for quantum circuits</a> - Paykin et al. (2017).</li>
+          <li><a href="https://arxiv.org/abs/1612.08091">ProjectQ: An Open Source Software Framework for Quantum Computing</a> - Steiger et al. (2018).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3183895.3183901">Q#: Enabling Scalable Quantum Computing and Development with a High-level DSL</a> - Svore et al. (2018).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3385412.3386007">Silq: a high-level quantum language with safe uncomputation and intuitive semantics</a> - Bichsel et al. (2020).</li>
+          <li><a href="https://arxiv.org/abs/2003.10611">t|ket〉: A Retargetable Compiler for NISQ Devices</a> - Sivarajah et al. (2021).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3563768.3563959">Qiwi: A Beginner Friendly Quantum Language</a> - Pal and Ghosh (2022).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3563297">Tower: data structures in Quantum superposition</a> - Yuan and Carbin (2022).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3498691">Twist: sound reasoning for purity and entanglement in Quantum programs</a> - Yuan et al. (2022).</li>
+          <li><a href="https://ieeexplore.ieee.org/document/10129229">isQ: An Integrated Software Stack for Quantum Programming</a> - Guo et al. (2023).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3571225">Qunity: A Unified Language for Quantum and Classical Computing</a> - Voichick et al. (2023).</li>
+          <li><a href="https://arxiv.org/abs/2405.08810">Quantum computing with Qiskit</a> - Javadi-Abhari et al. (2024).</li>
+          <li><a href="https://arxiv.org/pdf/2406.14792">Qrisp: A Framework for Compilable High-Level Programming of Gate-Based Quantum Computers</a> - Seidel et al. (2024).</li>
+          <li><a href="http://arxiv.org/abs/2404.12603">Qwerty: A Basis-Oriented Quantum Programming Language</a> - Adams et al. (2025).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3696443.3708966">Asdf: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language</a> - Adams et al. (2025).</li>
+          <li><a href="https://hdl.handle.net/1853/78239">I Know a Guy Who Knows a Guy: Inlining Indirect Calls in the Qwerty Compiler</a> - Barara (2025).</li>
+          <li><a href="https://arxiv.org/abs/2510.12582">GUPPY: Pythonic Quantum-Classical Programming</a> - Koch et al. (2025).</li>
+          <li><a href="http://arxiv.org/abs/2411.10835">Qurts: Automatic Quantum Uncomputation by Affine Types with Lifetime</a> - Hirata and Heunen (2025).</li>
+          <li><a href="https://dl.acm.org/doi/10.1145/3773656.3773658">Integrating Quantum Software Tools with(in) MLIR</a> - Hopf et al. (2026).</li>
+        </ul>
+
+        <h3 id="uncomputation">Uncomputation</h3>
+        <ul>
+          <li><a href="https://dl.acm.org/doi/10.1145/3453483.3454040">Unqomp: synthesizing uncomputation in Quantum circuits</a> - Paradis et al. (2021).</li>
+          <li><a href="https://quantum-journal.org/papers/q-2024-02-19-1258/">Reqomp: Space-constrained Uncomputation for Quantum Circuits</a> - Paradis et al. (2024).</li>
+          <li><a href="http://arxiv.org/abs/2411.10835">Qurts: Automatic Quantum Uncomputation by Affine Types with Lifetime</a> - Hirata and Heunen (2025).</li>
+        </ul>
+
+        <h3 id="verification--debugging">Verification &amp; debugging</h3>
+        <ul>
+          <li><a href="http://arxiv.org/abs/1905.09721">Statistical Assertions for Validating Patterns and Finding Bugs in Quantum Programs</a> - Huang and Martonosi (2019).</li>
+          <li><a href="https://drops.dagstuhl.de/entities/document/10.4230/OASIcs.PLATEAU.2018.4">QDB: From Quantum Algorithms Towards Correct Quantum Programs</a> - Huang and Martonosi (2019).</li>
+        </ul>
+
+        <h2 id="research-groups--institutions">Research groups &amp; institutions</h2>
+        <ul>
+          <li><img class="logo" src="content/logos/university-of-maryland.png" alt="" width="20" height="20"><a href="https://plum-umd.github.io/">PLUM</a> - Programming Languages research group, University of Maryland.</li>
+          <li><img class="logo" src="content/logos/university-of-chicago.png" alt="" width="20" height="20"><a href="https://pl.cs.uchicago.edu/">UChicago PL Research Group</a> - Programming languages group, University of Chicago.</li>
+          <li><img class="logo" src="content/logos/university-of-chicago.png" alt="" width="20" height="20"><a href="https://www.epiqc.cs.uchicago.edu/program-verification-debugging-and-qc-simulation">EPiQC</a> - Enabling Practical-scale Quantum Computing, University of Chicago.</li>
+          <li><img class="logo" src="content/logos/university-of-wisconsin-madison.png" alt="" width="20" height="20"><a href="https://madpl.cs.wisc.edu/">madPL</a> - Programming languages group, University of Wisconsin–Madison.</li>
+          <li><a href="https://www.anl.gov/mcs/quantum-computing">Argonne National Laboratory</a> - Quantum computing research, MCS division.</li>
+          <li><img class="logo" src="content/logos/the-university-of-british-columbia.png" alt="" width="20" height="20"><a href="https://glassnotes.github.io/qsar.html">QSAR</a> - Quantum Software and Algorithms Research, University of British Columbia.</li>
+          <li><img class="logo" src="content/logos/aarhus-university.webp" alt="" width="20" height="20"><a href="https://cs.au.dk/research/centers/quantum-software">Quantum Software Team Aarhus</a> - Aarhus University.</li>
+          <li><img class="logo" src="content/logos/university-of-technology-sydney.png" alt="" width="20" height="20"><a href="https://www.uts.edu.au/research/centres/centre-quantum-software-and-information/qsi-research/quantum-programming-theory">Centre of Quantum Software and Information</a> - University of Technology Sydney.</li>
+          <li><img class="logo" src="content/logos/university-of-cambridge.svg" alt="" width="20" height="20"><a href="https://www.cst.cam.ac.uk/research/quantum">Cambridge Quantum Computing Group</a> - University of Cambridge.</li>
+          <li><img class="logo" src="content/logos/ibm-research.svg" alt="" width="20" height="20"><a href="https://research.ibm.com/">IBM Research</a> - IBM Quantum.</li>
+        </ul>
+
+        <h2 id="reports">Reports</h2>
+        <ul>
+          <li><a href="content/reports/control-flow-report.md">Control Flow in Quantum Full-Stack Libraries</a> - a capability and correctness assessment of control flow support across quantum full-stack libraries.</li>
+          <li><a href="content/reports/research-questions.md">Quantum Control: Research Questions &amp; Sub-Areas</a> - a map of the open problems in quantum control flow and the research sub-areas organized around them.</li>
+        </ul>
+      </main>
+
+      <footer class="site-footer"></footer>
+    </div>
   </body>
 </html>
