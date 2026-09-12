@@ -1,6 +1,3 @@
-/* Light (monochrome) is the default; dark mode is opt-in via
-   <html data-theme="dark">. theme-toggle.js flips the attribute and every
-   rule below re-themes live via CSS custom properties. */
 :root {
   color-scheme: light;
 
@@ -22,17 +19,17 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-background: #0b0f1a;
-  --color-surface: #121826;
-  --color-surface-alt: #0f141f;
-  --color-text-primary: #e6e9f0;
-  --color-text-secondary: #9aa3b2;
-  --color-text-heading: #f5f7fa;
-  --color-border-primary: #2a3346;
-  --color-border-secondary: #1c2433;
+  --color-background: #1e1e1e;
+  --color-surface: #2d2d30;
+  --color-surface-alt: #252526;
+  --color-text-primary: #d4d4d4;
+  --color-text-secondary: #9d9d9d;
+  --color-text-heading: #ffffff;
+  --color-border-primary: #3e3e42;
+  --color-border-secondary: #333333;
   --color-accent: #3b82f6;
   --color-accent-bg: rgba(59, 130, 246, 0.12);
-  --color-code-bg: #0f141f;
+  --color-code-bg: #252526;
   --color-link: #7aa2ff;
   --color-link-hover: #a9c2ff;
 }
